@@ -10,6 +10,8 @@ import Config
 config :rockelivery,
   ecto_repos: [Rockelivery.Repo]
 
+config :rockelivery, Rockelivery.Users.Create, via_cep_adapter: Rockelivery.ViaCep.Client
+
 # Definir UUID como ID default no banco e pra chave estrangera
 config :rockelivery, Rockelivery.Repo,
   migration_primary_key: [type: :binary_id],

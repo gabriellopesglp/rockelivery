@@ -4,7 +4,6 @@ defmodule RockeliveryWeb.UsersViewTest do
   import Phoenix.View
   import Rockelivery.Factory
 
-  alias Rockelivery.User
   alias RockeliveryWeb.UsersView
 
   test "renders create.json" do
@@ -14,10 +13,10 @@ defmodule RockeliveryWeb.UsersViewTest do
 
     assert %{
              message: "User created!",
-             user: %User{
+             user: %Rockelivery.User{
                address: "Rua teste, 110",
                age: 23,
-               cep: "12345678",
+               cep: "13355000",
                cpf: "12345678900",
                email: "gabera@email.com",
                id: "04f0fbd4-d231-40ea-8170-3a8cc20586bf",
@@ -25,7 +24,9 @@ defmodule RockeliveryWeb.UsersViewTest do
                name: "Gabriel",
                password: "123456",
                password_hash: nil,
-               updated_at: nil
+               updated_at: nil,
+               city: "Elias Fausto",
+               uf: "SP"
              }
            } = response
   end
@@ -39,7 +40,7 @@ defmodule RockeliveryWeb.UsersViewTest do
              user: %Rockelivery.User{
                address: "Rua teste, 110",
                age: 23,
-               cep: "12345678",
+               cep: "13355000",
                cpf: "12345678900",
                email: "gabera@email.com",
                id: "04f0fbd4-d231-40ea-8170-3a8cc20586bf",
@@ -47,7 +48,9 @@ defmodule RockeliveryWeb.UsersViewTest do
                name: "Gabriel",
                password: "123456",
                password_hash: nil,
-               updated_at: nil
+               updated_at: nil,
+               city: "Elias Fausto",
+               uf: "SP"
              }
            } = response
   end

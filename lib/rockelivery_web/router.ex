@@ -15,6 +15,10 @@ defmodule RockeliveryWeb.Router do
 
     # Resources cria todas as todas e o Except remove as que for setado e o Only só cria as que forem setados
     resources "/users", UsersController, except: [:new, :edit]
+
+    post "/items", ItemsController, :create
+
+    post "/orders", OrdersController, :create
   end
 
   # Enables LiveDashboard only for development

@@ -4,15 +4,18 @@ defmodule Rockelivery.User do
   import Ecto.Changeset
 
   alias Ecto.Changeset
+  alias Rockelivery.Order
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  @required_params [:address, :age, :cep, :email, :password, :cpf, :name]
+  @required_params [:address, :age, :cep, :email, :password, :cpf, :name, :city, :uf]
+
+  @build_params @required_params -- [:city, :uf]
 
   @update_params @required_params -- [:password]
 
   # Quando chamar o user na view só vai retornar no JSON os items a baixo
-  @derive {Jason.Encoder, only: [:id, :name, :email, :cpf, :age, :cep, :address]}
+  @derive {Jason.Encoder, only: [:id, :name, :email, :cpf, :age, :cep, :address, :city, :uf]}
 
   schema "users" do
     field :address, :string
@@ -23,8 +26,24 @@ defmodule Rockelivery.User do
     field :password, :string, virtual: true
     field :password_hash, :string
     field :name, :string
+    field :city, :string
+    field :uf, :string
+
+    has_many :orders, Order
 
     timestamps()
+  end
+
+  # Usar a validação do changeset sem ter que ir no banco de dados -> apply_action
+  def build(params) do
+    params
+    |> changeset_build()
+    |> apply_action(:create)
+  end
+
+  def changeset_build(params) do
+    %__MODULE__{}
+    |> validations(params, @build_params)
   end
 
   def changeset(params) do
@@ -43,6 +62,7 @@ defmodule Rockelivery.User do
     |> validate_required(fields)
     |> validate_length(:password, min: 6)
     |> validate_length(:cep, is: 8)
+    |> validate_length(:uf, is: 2)
     |> validate_length(:cpf, is: 11)
     |> validate_number(:age, greater_than_or_equal_to: 18)
     |> validate_format(:email, ~r/@/)

@@ -1,14 +1,20 @@
 defmodule Rockelivery.Users.CreateTest do
   use Rockelivery.DataCase, async: true
 
+  import Mox
   import Rockelivery.Factory
 
   alias Rockelivery.{Error, User}
   alias Rockelivery.Users.Create
+  alias Rockelivery.ViaCep.{ClientMock, Response}
 
   describe "call/1" do
     test "when all params are valid, returns the user" do
       params = build(:user_params)
+
+      expect(ClientMock, :get_cep_info, fn _cep ->
+        {:ok, %Response{localidade: "São Paulo", uf: "SP"}}
+      end)
 
       response = Create.call(params)
 

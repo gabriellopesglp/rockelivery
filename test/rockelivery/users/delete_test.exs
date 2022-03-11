@@ -20,9 +20,11 @@ defmodule Rockelivery.Users.DeleteTest do
                  email: "gabera@email.com",
                  id: "04f0fbd4-d231-40ea-8170-3a8cc20586bf",
                  address: "Rua teste, 110",
-                 cep: "12345678",
+                 cep: "13355000",
                  cpf: "12345678900",
                  name: "Gabriel",
+                 uf: "SP",
+                 city: "Elias Fausto",
                  password: nil,
                  password_hash: nil
                }

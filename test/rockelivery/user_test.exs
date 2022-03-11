@@ -8,7 +8,7 @@ defmodule Rockelivery.UserTest do
 
   describe "changeset/1" do
     test "when all parems are valid, returns a valid changeset" do
-      params = build(:user_params)
+      params = build(:user_changeset_params)
 
       response = User.changeset(params)
 
@@ -16,7 +16,7 @@ defmodule Rockelivery.UserTest do
     end
 
     test "when there is some error, returns an invalid changeset" do
-      params = build(:user_params, %{"age" => 15, "password" => "123"})
+      params = build(:user_changeset_params, %{"age" => 15, "password" => "123"})
 
       response = User.changeset(params)
 
@@ -31,7 +31,7 @@ defmodule Rockelivery.UserTest do
 
   describe "changeset/2" do
     test "when all parems are valid, returns a valid changeset" do
-      params = build(:user_params)
+      params = build(:user_changeset_params)
 
       update_params = %{name: "Capirvara"}
 
@@ -45,7 +45,7 @@ defmodule Rockelivery.UserTest do
 
     test "when there is some error, returns an invalid changeset" do
       params =
-        build(:user_params, %{
+        build(:user_changeset_params, %{
           "cpf" => "123456789",
           "cep" => "12345",
           "email" => "gaberaemail.com"

@@ -7,7 +7,7 @@ defmodule Rockelivery.Factory do
     %{
       "address" => "Rua teste, 110",
       "age" => 23,
-      "cep" => "12345678",
+      "cep" => "13355000",
       "cpf" => "12345678900",
       "email" => "gabera@email.com",
       "password" => "123456",
@@ -15,11 +15,27 @@ defmodule Rockelivery.Factory do
     }
   end
 
+  def user_changeset_params_factory do
+    %{
+      "address" => "Rua teste, 110",
+      "age" => 23,
+      "cep" => "13355000",
+      "cpf" => "12345678900",
+      "email" => "gabera@email.com",
+      "password" => "123456",
+      "name" => "Gabriel",
+      "city" => "Elias Fausto",
+      "uf" => "SP"
+    }
+  end
+
   def user_factory do
     %User{
       address: "Rua teste, 110",
       age: 23,
-      cep: "12345678",
+      cep: "13355000",
+      city: "Elias Fausto",
+      uf: "SP",
       cpf: "12345678900",
       email: "gabera@email.com",
       password: "123456",
